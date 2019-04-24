@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.jasonweinzierl.chatroom.FXMLController">
+    <top>
+        <MenuBar>
+            <Menu mnemonicParsing="false" text="Room">
+                <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <center>
+        <VBox>
+            <padding>
+                <Insets topRightBottomLeft="5"/>
+            </padding>
+            <HBox>
+                <padding>
+                    <Insets bottom="5" />
+                </padding>
+                <Spinner fx:id="portSpinner" editable="true">
+                    <valueFactory>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="1024" max="49151" initialValue="10119"/>
+                    </valueFactory>
+                </Spinner>
+                <Button text="Start Server" fx:id="serverButton" onAction="#handleStartServer"/>
+                <Button text="Start Client" fx:id="clientButton" onAction="#handleStartClient"/>
+            </HBox>
+            <TextArea fx:id="textArea" editable="false" VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </center>
+    <bottom>
+        <TextField fx:id="textField" editable="false" visible="false"/>
+    </bottom>
+</BorderPane>
