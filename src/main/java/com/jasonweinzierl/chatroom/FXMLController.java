@@ -85,7 +85,7 @@ public class FXMLController implements Initializable, Startable, PropertyChangeL
         this.server = new Server(this.out);
         this.server.addPropertyChangeListener(this);
 
-        this.server.listen(10119);
+        this.server.listen(portSpinner.getValue());
     }
 
     @FXML
@@ -96,7 +96,7 @@ public class FXMLController implements Initializable, Startable, PropertyChangeL
 
         this.client = new Client(this.out);
         this.client.addPropertyChangeListener(this);
-        this.client.connect("localhost", 10119);
+        this.client.connect("localhost", portSpinner.getValue());
 
         this.textField.setVisible(true);
         this.textField.setOnAction(actionEvent -> {
@@ -104,6 +104,18 @@ public class FXMLController implements Initializable, Startable, PropertyChangeL
             this.textField.clear();
         });
         this.textField.setEditable(true);
+    }
+
+    @FXML
+    public void handleCheckAvailablePort(ActionEvent event) {
+        this.textArea.appendText("Checking... ");
+        if (Server.available(portSpinner.getValue())) {
+            this.textArea.appendText("Available.\n");
+            portSpinner.setStyle("-fx-body-color: green;");
+        } else {
+            this.textArea.appendText("Unavailable.\n");
+            portSpinner.setStyle("-fx-body-color: red;");
+        }
     }
 
     /**

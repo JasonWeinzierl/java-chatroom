@@ -26,11 +26,14 @@
                 <padding>
                     <Insets bottom="5" />
                 </padding>
+                <Label text="Server Port:" />
                 <Spinner fx:id="portSpinner" editable="true">
                     <valueFactory>
                         <SpinnerValueFactory.IntegerSpinnerValueFactory min="1024" max="49151" initialValue="10119"/>
                     </valueFactory>
                 </Spinner>
+                <Button text="Check" onAction="#handleCheckAvailablePort" />
+                <HBox HBox.hgrow="ALWAYS" />
                 <Button text="Start Server" fx:id="serverButton" onAction="#handleStartServer"/>
                 <Button text="Start Client" fx:id="clientButton" onAction="#handleStartClient"/>
             </HBox>
